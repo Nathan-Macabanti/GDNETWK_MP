@@ -21,10 +21,10 @@ public class GManager : MonoBehaviour
     {
         winnerTextShadow = GameObject.Find("WinnerText");
         player1MoveText = GameObject.Find("Player1MoveText");
-        player2MoveText = GameObject.Find("Player1MoveText");
+        player2MoveText = GameObject.Find("Player2MoveText");
 
-        player1 = GameObject.Find("Player1");
-        player2 = GameObject.Find("Player2");
+        player1 = GameObject.Find("Player1_Sprite");
+        player2 = GameObject.Find("Player2_Sprite");
 
         player1.GetComponent<PathFinding>().moveAllowed = false;
         player2.GetComponent<PathFinding>().moveAllowed = false;
