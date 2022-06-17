@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-/*
- * Reference Code from Alexander Zotov (Youtube) 
- * Retrieved at May 30, 2022
- * 
- */
 
 public class GManager : MonoBehaviour
 {
-    public static GManager gameManagerInstance;
-
     private static GameObject winnerTextShadow, player1MoveText, player2MoveText;
 
     private static GameObject player1, player2;
@@ -26,16 +19,6 @@ public class GManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        if(gameManagerInstance == null)
-        {
-            gameManagerInstance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-
         winnerTextShadow = GameObject.Find("WinnerText");
         player1MoveText = GameObject.Find("Player1MoveText");
         player2MoveText = GameObject.Find("Player1MoveText");

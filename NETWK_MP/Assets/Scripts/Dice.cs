@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
- * Reference Code from Alexander Zotov (Youtube) 
- * Retrieved at May 30, 2022
- * 
- */
+
 public class Dice : MonoBehaviour
 {
     [SerializeField]
@@ -14,12 +10,9 @@ public class Dice : MonoBehaviour
     private int playerTurn = 1;
     private bool coroutineAllowed = true;
 
-   
-
     // Start is called before the first frame update
     private void Start()
     {
-
         rend = GetComponent<SpriteRenderer>();
        // diceSides = Resources.LoadAll<Sprite>("DiceSides/");
         rend.sprite = diceSides[5];
