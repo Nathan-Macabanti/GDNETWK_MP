@@ -7,8 +7,7 @@ public class GManager : MonoBehaviour
 {
     private static GameObject winnerTextShadow, player1MoveText, player2MoveText;
 
-    private static GameObject player1, player2, wpObject;
-    
+    private static GameObject player1, player2;
 
     public static int diceSideThrown = 0;
     public static int player1StartWayPoint = 0;
@@ -18,25 +17,14 @@ public class GManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    public void startGame()
+    void Start()
     {
         winnerTextShadow = GameObject.Find("WinnerText");
         player1MoveText = GameObject.Find("Player1MoveText");
         player2MoveText = GameObject.Find("Player1MoveText");
 
-        //player1 = GameObject.Find("Player1");
-        player1 = GameObject.FindWithTag("Player1");
-        player2 = GameObject.FindWithTag("Player2");
-        wpObject = GameObject.Find("BoardWaypoints");
-
-        for(int i = 0; i < 100; i++)
-        {
-            player1.GetComponent<PathFinding>().wayPoints[i] = wpObject.transform.GetChild(i).gameObject.transform;
-            player2.GetComponent<PathFinding>().wayPoints[i] = wpObject.transform.GetChild(i).gameObject.transform;
-        }
-
-        
-    
+        player1 = GameObject.Find("Player1");
+        player2 = GameObject.Find("Player2");
 
         player1.GetComponent<PathFinding>().moveAllowed = false;
         player2.GetComponent<PathFinding>().moveAllowed = false;
@@ -44,10 +32,6 @@ public class GManager : MonoBehaviour
         winnerTextShadow.gameObject.SetActive(false);
         player1MoveText.gameObject.SetActive(true);
         player2MoveText.gameObject.SetActive(false);
-
-        player1.GetComponent<PathFinding>().startingPositions();
-        player2.GetComponent<PathFinding>().startingPositions();
-
 
     }
 
