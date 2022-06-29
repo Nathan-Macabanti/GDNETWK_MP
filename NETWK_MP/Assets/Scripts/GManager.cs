@@ -42,15 +42,20 @@ public class GManager : MonoBehaviour
         if(player1.GetComponent<PathFinding>().waypointIndex > player1StartWayPoint + diceSideThrown)
         {
             player1.GetComponent<PathFinding>().moveAllowed = false;
+            player1.GetComponent<PathFinding>().GameLogic();
             player1MoveText.gameObject.SetActive(false);
             player2MoveText.gameObject.SetActive(true);
             player1StartWayPoint = player1.GetComponent<PathFinding>().waypointIndex - 1;
+            Debug.Log("finding out when this triggers");
         }
+
 
         //Continue Player 2 Move Condition 
         if (player2.GetComponent<PathFinding>().waypointIndex > player2StartWayPoint + diceSideThrown)
         {
             player2.GetComponent<PathFinding>().moveAllowed = false;
+            player2.GetComponent<PathFinding>().GameLogic();
+
             player2MoveText.gameObject.SetActive(false);
             player1MoveText.gameObject.SetActive(true);
             player2StartWayPoint = player2.GetComponent<PathFinding>().waypointIndex - 1;
