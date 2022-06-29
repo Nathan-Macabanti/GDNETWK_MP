@@ -38,6 +38,7 @@ public class GManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Continue Player 1 Move Condition 
         if(player1.GetComponent<PathFinding>().waypointIndex > player1StartWayPoint + diceSideThrown)
         {
             player1.GetComponent<PathFinding>().moveAllowed = false;
@@ -46,7 +47,8 @@ public class GManager : MonoBehaviour
             player1StartWayPoint = player1.GetComponent<PathFinding>().waypointIndex - 1;
         }
 
-        if(player2.GetComponent<PathFinding>().waypointIndex > player2StartWayPoint + diceSideThrown)
+        //Continue Player 2 Move Condition 
+        if (player2.GetComponent<PathFinding>().waypointIndex > player2StartWayPoint + diceSideThrown)
         {
             player2.GetComponent<PathFinding>().moveAllowed = false;
             player2MoveText.gameObject.SetActive(false);
@@ -54,6 +56,7 @@ public class GManager : MonoBehaviour
             player2StartWayPoint = player2.GetComponent<PathFinding>().waypointIndex - 1;
         }
 
+        //Winning Condition Player 1
         if(player1.GetComponent<PathFinding>().waypointIndex == player1.GetComponent<PathFinding>().wayPoints.Length)
         {
             winnerTextShadow.gameObject.SetActive(true);
@@ -63,6 +66,7 @@ public class GManager : MonoBehaviour
             gameOver = true;
         }
 
+        //Winning Condition Player 2
         if (player2.GetComponent<PathFinding>().waypointIndex == player2.GetComponent<PathFinding>().wayPoints.Length)
         {
             winnerTextShadow.gameObject.SetActive(true);
