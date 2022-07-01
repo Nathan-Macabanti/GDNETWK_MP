@@ -17,6 +17,7 @@ public class PathFinding : MonoBehaviour
 
     public bool moveAllowed = false;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class PathFinding : MonoBehaviour
         if(moveAllowed)
         {
             Move();
-            GameLogic();
+
 
         }
     }
@@ -44,13 +45,15 @@ public class PathFinding : MonoBehaviour
                 moveSpeed * Time.deltaTime
                 );
 
-            
-            
+
+
             if (transform.position == wayPoints[waypointIndex].transform.position)
             {
                 prevwaypointIndex = waypointIndex;
                 waypointIndex += 1;
+
             }
+
             /*
             if (transform.position != wayPoints[waypointIndex].transform.position)
             {
@@ -64,7 +67,7 @@ public class PathFinding : MonoBehaviour
         
     }
 
-    private void GameLogic()
+    public void GameLogic()
     {
 
         //Snakes
@@ -169,6 +172,7 @@ public class PathFinding : MonoBehaviour
         //Ladders
         if (transform.position == wayPoints[3].transform.position)
         {
+            
             newwaypointIndex = 24;
             waypointIndex = newwaypointIndex;
 
@@ -176,8 +180,9 @@ public class PathFinding : MonoBehaviour
             wayPoints[24].transform.position,
             wayPoints[24].transform.position,
             moveSpeed * Time.deltaTime
+
+            
             );
-     
 
         }
         else if (transform.position == wayPoints[12].transform.position)
