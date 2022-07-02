@@ -21,7 +21,12 @@ public class PathFinding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public void startingPositions()
+    {
         transform.position = wayPoints[waypointIndex].transform.position;
+
     }
 
     // Update is called once per frame

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class GManager : MonoBehaviour
+public class GManager : NetworkBehaviour
 {
     private static GameObject winnerTextShadow, player1MoveText, player2MoveText;
 
-    private static GameObject player1, player2;
+    private static GameObject player1, player2, wpObject;
+    
 
     public static int diceSideThrown = 0;
     public static int player1StartWayPoint = 0;
@@ -17,14 +19,25 @@ public class GManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void startGame()
     {
         winnerTextShadow = GameObject.Find("WinnerText");
         player1MoveText = GameObject.Find("Player1MoveText");
-        player2MoveText = GameObject.Find("Player1MoveText");
+        player2MoveText = GameObject.Find("Player2MoveText");
 
-        player1 = GameObject.Find("Player1");
-        player2 = GameObject.Find("Player2");
+        //player1 = GameObject.Find("Player1");
+        //player1 = GameObject.FindWithTag("Player1");
+        //player2 = GameObject.FindWithTag("Player2");
+
+        player1 = NetworkClient.spawned[4].gameObject;
+        player2 = NetworkClient.spawned[5].gameObject;
+        wpObject = GameObject.Find("BoardWaypoints");
+
+        for(int i = 0; i < 100; i++)
+        {
+            player1.GetComponent<PathFinding>().wayPoints[i] = wpObject.transform.GetChild(i).gameObject.transform;
+            player2.GetComponent<PathFinding>().wayPoints[i] = wpObject.transform.GetChild(i).gameObject.transform;
+        }
 
         player1.GetComponent<PathFinding>().moveAllowed = false;
         player2.GetComponent<PathFinding>().moveAllowed = false;
@@ -32,6 +45,10 @@ public class GManager : MonoBehaviour
         winnerTextShadow.gameObject.SetActive(false);
         player1MoveText.gameObject.SetActive(true);
         player2MoveText.gameObject.SetActive(false);
+
+        player1.GetComponent<PathFinding>().startingPositions();
+        player2.GetComponent<PathFinding>().startingPositions();
+
 
     }
 
