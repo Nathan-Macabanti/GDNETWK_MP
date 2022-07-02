@@ -1598,6 +1598,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9099950456206618243, guid: bc23edda6a0c9f24599401d1c67aa240, type: 3}
+      propertyPath: clientAuthority
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8754209677177035776, guid: bc23edda6a0c9f24599401d1c67aa240, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc23edda6a0c9f24599401d1c67aa240, type: 3}
@@ -2266,7 +2270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Ready
 --- !u!222 &998037779
 CanvasRenderer:
   m_ObjectHideFlags: 0
