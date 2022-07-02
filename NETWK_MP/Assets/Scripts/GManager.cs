@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class GManager : MonoBehaviour
+public class GManager : NetworkBehaviour
 {
     private static GameObject winnerTextShadow, player1MoveText, player2MoveText;
 
@@ -22,11 +23,14 @@ public class GManager : MonoBehaviour
     {
         winnerTextShadow = GameObject.Find("WinnerText");
         player1MoveText = GameObject.Find("Player1MoveText");
-        player2MoveText = GameObject.Find("Player1MoveText");
+        player2MoveText = GameObject.Find("Player2MoveText");
 
         //player1 = GameObject.Find("Player1");
-        player1 = GameObject.FindWithTag("Player1");
-        player2 = GameObject.FindWithTag("Player2");
+        //player1 = GameObject.FindWithTag("Player1");
+        //player2 = GameObject.FindWithTag("Player2");
+
+        player1 = NetworkClient.spawned[4].gameObject;
+        player2 = NetworkClient.spawned[5].gameObject;
         wpObject = GameObject.Find("BoardWaypoints");
 
         for(int i = 0; i < 100; i++)
@@ -34,9 +38,6 @@ public class GManager : MonoBehaviour
             player1.GetComponent<PathFinding>().wayPoints[i] = wpObject.transform.GetChild(i).gameObject.transform;
             player2.GetComponent<PathFinding>().wayPoints[i] = wpObject.transform.GetChild(i).gameObject.transform;
         }
-
-        
-    
 
         player1.GetComponent<PathFinding>().moveAllowed = false;
         player2.GetComponent<PathFinding>().moveAllowed = false;
