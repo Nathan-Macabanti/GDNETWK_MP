@@ -48,11 +48,20 @@ public class Dice : NetworkBehaviour
         {
             GManager.MovePlayer(1);
         }
-        else if (playerTurn == -1)
+        else if (playerTurn == 2)
         {
             GManager.MovePlayer(2);
         }
-        if(!isLocalPlayer)
+        else if (playerTurn == 3)
+        {
+            GManager.MovePlayer(3);
+        }
+        else if (playerTurn == 4)
+        {
+            GManager.MovePlayer(4);
+        }
+     
+        if (!isLocalPlayer)
             updatePlayer();
         coroutineAllowed = true;
     }
@@ -69,7 +78,14 @@ public class Dice : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void updatePlayer()
     {
-        playerTurn *= -1;
+        playerTurn += 1;
+
+        if(playerTurn > 4)
+        {
+            playerTurn = 0;
+            playerTurn += 1;
+        }
+
         Debug.Log("Working | Current player: " + playerTurn);
     }
 }
