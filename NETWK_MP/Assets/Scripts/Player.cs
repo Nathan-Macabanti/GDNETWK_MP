@@ -15,12 +15,12 @@ public class Player : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             CastRay();
-            Debug.Log("casted");
+            //Debug.Log("casted");
         }
     }
 
     private void OnMouseDown() {
-        Debug.Log("Casted other");
+        //Debug.Log("Casted other");
     }
 
     void CastRay()
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast (ray.origin, ray.direction, Mathf.Infinity);
         if (hit.collider !=null) 
         {
-            Debug.Log (hit.collider.gameObject.name);
+            //Debug.Log (hit.collider.gameObject.name);
         }
     }
 }

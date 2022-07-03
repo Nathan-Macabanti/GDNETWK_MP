@@ -32,6 +32,8 @@ public class GManager : NetworkBehaviour
         player1 = NetworkClient.spawned[4].gameObject;
         player2 = NetworkClient.spawned[5].gameObject;
         wpObject = GameObject.Find("BoardWaypoints");
+        
+
 
         for(int i = 0; i < 100; i++)
         {
@@ -45,6 +47,8 @@ public class GManager : NetworkBehaviour
         winnerTextShadow.gameObject.SetActive(false);
         player1MoveText.gameObject.SetActive(true);
         player2MoveText.gameObject.SetActive(false);
+
+        
 
         player1.GetComponent<PathFinding>().startingPositions();
         player2.GetComponent<PathFinding>().startingPositions();
