@@ -8,11 +8,12 @@ public class Dice : NetworkBehaviour
     [SerializeField]
     private Sprite[] diceSides;
     private SpriteRenderer rend;
-    [SyncVar]
+    [SyncVar (hook = nameof(updateTurn))]
     int playerTurn = 1;
+    
     int currentPlayer;
     private bool coroutineAllowed = true;
-    [SyncVar]
+    [SyncVar (hook = nameof(updateDice))]
     int randomDiceSide = 0;
 
     // Start is called before the first frame update
@@ -51,20 +52,24 @@ public class Dice : NetworkBehaviour
         {
             GManager.MovePlayer(2);
         }
-        
-        Debug.Log("Before: " + playerTurn);
-        playerTurn *= -1;
-        Debug.Log("After: " + playerTurn);
+        if(!isLocalPlayer)
+            updatePlayer();
         coroutineAllowed = true;
-        Debug.Log("Rolling Dice");
-
     }
 
-    private void Update() 
+    void updateTurn(int oldvar, int newvar)
+    {
+        Debug.Log("Old Turn:" + oldvar + "New Turn: " + newvar);
+    }
+
+    void updateDice(int oldvar , int newvar)
     {
         rend.sprite = diceSides[randomDiceSide];
-        currentPlayer = playerTurn;
-        //Debug.Log(currentPlayer);
-        
+    }
+    [Command(requiresAuthority = false)]
+    void updatePlayer()
+    {
+        playerTurn *= -1;
+        Debug.Log("Working | Current player: " + playerTurn);
     }
 }

@@ -24,7 +24,7 @@ public class GManager : NetworkBehaviour
         winnerTextShadow = GameObject.Find("WinnerText");
         player1MoveText = GameObject.Find("Player1MoveText");
         player2MoveText = GameObject.Find("Player2MoveText");
-
+        
         //player1 = GameObject.Find("Player1");
         //player1 = GameObject.FindWithTag("Player1");
         //player2 = GameObject.FindWithTag("Player2");
@@ -32,6 +32,9 @@ public class GManager : NetworkBehaviour
         player1 = NetworkClient.spawned[4].gameObject;
         player2 = NetworkClient.spawned[5].gameObject;
         wpObject = GameObject.Find("BoardWaypoints");
+        
+        var p2Sprite = Resources.Load<Sprite>("Player2_Sprite");
+        player2.GetComponent<SpriteRenderer>().sprite = p2Sprite;
 
         for(int i = 0; i < 100; i++)
         {
@@ -45,6 +48,8 @@ public class GManager : NetworkBehaviour
         winnerTextShadow.gameObject.SetActive(false);
         player1MoveText.gameObject.SetActive(true);
         player2MoveText.gameObject.SetActive(false);
+
+        
 
         player1.GetComponent<PathFinding>().startingPositions();
         player2.GetComponent<PathFinding>().startingPositions();
