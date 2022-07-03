@@ -16,6 +16,7 @@ public class PathFinding : MonoBehaviour
     public int newwaypointIndex = 0;
 
     public bool moveAllowed = false;
+    
 
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class PathFinding : MonoBehaviour
     public void startingPositions()
     {
         transform.position = wayPoints[waypointIndex].transform.position;
+        
 
     }
 
