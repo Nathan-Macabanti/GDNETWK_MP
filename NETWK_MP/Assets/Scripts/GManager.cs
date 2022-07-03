@@ -29,8 +29,8 @@ public class GManager : NetworkBehaviour
         //player1 = GameObject.FindWithTag("Player1");
         //player2 = GameObject.FindWithTag("Player2");
 
-        player1 = NetworkClient.spawned[4].gameObject;
-        player2 = NetworkClient.spawned[5].gameObject;
+        player1 = NetworkClient.spawned[3].gameObject;
+        player2 = NetworkClient.spawned[4].gameObject;
         wpObject = GameObject.Find("BoardWaypoints");
         
         var p2Sprite = Resources.Load<Sprite>("Player2_Sprite");
@@ -60,47 +60,50 @@ public class GManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Continue Player 1 Move Condition 
-        if(player1.GetComponent<PathFinding>().waypointIndex > player1StartWayPoint + diceSideThrown)
+        if(PathFinding.isReady)
         {
-            player1.GetComponent<PathFinding>().moveAllowed = false;
-            player1.GetComponent<PathFinding>().GameLogic();
-            player1MoveText.gameObject.SetActive(false);
-            player2MoveText.gameObject.SetActive(true);
-            player1StartWayPoint = player1.GetComponent<PathFinding>().waypointIndex - 1;
-            Debug.Log("finding out when this triggers");
-        }
+                //Continue Player 1 Move Condition 
+            if(player1.GetComponent<PathFinding>().waypointIndex > player1StartWayPoint + diceSideThrown)
+            {
+                player1.GetComponent<PathFinding>().moveAllowed = false;
+                player1.GetComponent<PathFinding>().GameLogic();
+                player1MoveText.gameObject.SetActive(false);
+                player2MoveText.gameObject.SetActive(true);
+                player1StartWayPoint = player1.GetComponent<PathFinding>().waypointIndex - 1;
+                Debug.Log("finding out when this triggers");
+            }
 
 
-        //Continue Player 2 Move Condition 
-        if (player2.GetComponent<PathFinding>().waypointIndex > player2StartWayPoint + diceSideThrown)
-        {
-            player2.GetComponent<PathFinding>().moveAllowed = false;
-            player2.GetComponent<PathFinding>().GameLogic();
+            //Continue Player 2 Move Condition 
+            if (player2.GetComponent<PathFinding>().waypointIndex > player2StartWayPoint + diceSideThrown)
+            {
+                player2.GetComponent<PathFinding>().moveAllowed = false;
+                player2.GetComponent<PathFinding>().GameLogic();
 
-            player2MoveText.gameObject.SetActive(false);
-            player1MoveText.gameObject.SetActive(true);
-            player2StartWayPoint = player2.GetComponent<PathFinding>().waypointIndex - 1;
-        }
+                player2MoveText.gameObject.SetActive(false);
+                player1MoveText.gameObject.SetActive(true);
+                player2StartWayPoint = player2.GetComponent<PathFinding>().waypointIndex - 1;
+            }
 
-        //Winning Condition Player 1
-        if(player1.GetComponent<PathFinding>().waypointIndex == player1.GetComponent<PathFinding>().wayPoints.Length)
-        {
-            winnerTextShadow.gameObject.SetActive(true);
-            player1MoveText.gameObject.SetActive(false);
-            player2MoveText.gameObject.SetActive(false);
-            winnerTextShadow.GetComponent<Text>().text = "Player 1 Wins!";
-            gameOver = true;
-        }
+            //Winning Condition Player 1
+            if(player1.GetComponent<PathFinding>().waypointIndex == player1.GetComponent<PathFinding>().wayPoints.Length)
+            {
+                winnerTextShadow.gameObject.SetActive(true);
+                player1MoveText.gameObject.SetActive(false);
+                player2MoveText.gameObject.SetActive(false);
+                winnerTextShadow.GetComponent<Text>().text = "Player 1 Wins!";
+                gameOver = true;
+            }
 
-        //Winning Condition Player 2
-        if (player2.GetComponent<PathFinding>().waypointIndex == player2.GetComponent<PathFinding>().wayPoints.Length)
-        {
-            winnerTextShadow.gameObject.SetActive(true);
-            player1MoveText.gameObject.SetActive(false);
-            player2MoveText.gameObject.SetActive(false);
-            winnerTextShadow.GetComponent<Text>().text = "Player 2 Wins!";
-            gameOver = true;
+            //Winning Condition Player 2
+            if (player2.GetComponent<PathFinding>().waypointIndex == player2.GetComponent<PathFinding>().wayPoints.Length)
+            {
+                winnerTextShadow.gameObject.SetActive(true);
+                player1MoveText.gameObject.SetActive(false);
+                player2MoveText.gameObject.SetActive(false);
+                winnerTextShadow.GetComponent<Text>().text = "Player 2 Wins!";
+                gameOver = true;
+            }
         }
 
     }

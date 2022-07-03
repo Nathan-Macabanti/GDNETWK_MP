@@ -16,6 +16,7 @@ public class PathFinding : MonoBehaviour
     public int newwaypointIndex = 0;
 
     public bool moveAllowed = false;
+    public static bool isReady = false;
     
 
 
@@ -27,7 +28,7 @@ public class PathFinding : MonoBehaviour
     public void startingPositions()
     {
         transform.position = wayPoints[waypointIndex].transform.position;
-        
+        isReady = true;
 
     }
 
